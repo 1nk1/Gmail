@@ -1,6 +1,5 @@
-﻿using Autofac;
-using Gmail.Config;
-using Gmail.Contracts.Pages;
+﻿using Gmail.Config;
+using Gmail.Pages;
 using NUnit.Framework;
 
 namespace Gmail.Tests
@@ -8,24 +7,26 @@ namespace Gmail.Tests
     public class CreateLetterFlow : BaseTest
     {
         [Test]
-        [TestCase("Subject", "test")]
+        [TestCase("Subject topic", "Body Test")]
         public void SendLetter(string subject, string message)
         {
-            var mainPage = lifescope.Resolve<IMainPage>();
-            var loginPage = lifescope.Resolve<ILoginPage>();
+            var loginPage = new LoginPage(_driver);
+            var mainPage = new MainPage(_driver);
 
             loginPage.TryAuthorize();
-            mainPage.CreateLetter(Conf.GetByValue("email"), subject, message);
+            mainPage.CreateLetters(Conf.GetByValue("email"), subject, message);
         }
 
         [Test]
         public void VerifyLettersAfterSending()
         {
-            var loginPage = lifescope.Resolve<ILoginPage>();
-            var sendPage = lifescope.Resolve<ISendPage>();
+            var loginPage = new LoginPage(_driver);
+            var sendPage = new SendPage(_driver);
 
             loginPage.TryAuthorize();
-            sendPage.SelectFirstTenLetters();
+            sendPage.NavigateToSentBox();
+            sendPage.SelectLetters(10);
+            sendPage.PrintSubjectToLog(10);
         }
     }
 }

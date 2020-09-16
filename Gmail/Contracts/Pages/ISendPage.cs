@@ -2,6 +2,8 @@
 {
     interface ISendPage
     {
-        void SelectFirstTenLetters();
+        void NavigateToSentBox();
+        void SelectLetters(int count);
+        void PrintSubjectToLog(int count);
     }
 }

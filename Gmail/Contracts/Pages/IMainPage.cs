@@ -1,7 +1,10 @@
-﻿namespace Gmail.Contracts.Pages
+﻿using Gmail.Pages;
+
+namespace Gmail.Contracts.Pages
 {
     public interface IMainPage
     {
-        void CreateLetter(string to, string subject, string message);
+        MainPage CreateLetter(string to, string subject, string message);
+        MainPage CreateLetters(string to, string subject, string message, int count = 10);
     }
 }
