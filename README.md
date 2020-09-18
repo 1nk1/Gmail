@@ -6,7 +6,7 @@ cd Gmail
 ```
 
 ### Open in top toolbar Microsoft Visual Studio 2017/2019 (anyway version) 
-- Tools -> NuGet Package Manager -> Package Manager Console
+- <strong> ***Tools -> NuGet Package Manager -> Package Manager Console*** </strong>
 
 next step: :smile:
 
